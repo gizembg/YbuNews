@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +29,7 @@ public class FragmentFood extends Fragment {
     private String mParam2;
     private TextView txt;
 
+    public WebView mWebView;
 
     public FragmentFood() {
         // Required empty public constructor
@@ -59,14 +62,21 @@ public class FragmentFood extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+
+    {
 
         View v = inflater.inflate(R.layout.fragment_fragment_food, container, false);
-        Toast.makeText(getActivity(),"Fragment food", Toast.LENGTH_SHORT).show();
-        txt =(TextView) v.findViewById(R.id.textFood);
-        //list =(ListView) v.findViewById(R.id.contentnews);
 
-        // txt.setText("Welcome " + mParam1);
+
+
+        mWebView = (WebView) v.findViewById(R.id.foodweb);
+        WebSettings webSettings = mWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        mWebView.loadUrl("http://docs.google.com/gview?embedded=true&url=<http%3A%2F%2Fybu.edu.tr%2Fsks%2Fcontents%2Ffiles%2FMAYIS%2520MEN%25C3%259C%2520YEN%25C4%25B0%2520%281%29.pdf>");
+
+        Toast.makeText(getActivity(), "Fragment food", Toast.LENGTH_SHORT).show();
+        txt = (TextView) v.findViewById(R.id.textFood);
 
 
         Thread t = new Thread(new Runnable() {
@@ -74,45 +84,32 @@ public class FragmentFood extends Fragment {
             Element element;
             Elements links;
             String txtt;
-             String url;
+            String url;
+
             @Override
             public void run() {
                 try {
-                    doc = Jsoup.connect("http://ybu.edu.tr/sks/category_title_list-576-aybu-beslenme.html").get();
-                    element = doc.select("span.alternative_list").first();
+                    doc = Jsoup.connect("http://ybu.edu.tr/muhendislik/bilgisayar/").get();
+              //      element = doc.select("span.alternative_list").first();
 
-                   //element = doc.getElementById("ContentPlaceHolder1_Content_Title_List1_rpData_hplink_3");
-
-                    links = element.getElementsByTag("a");
-                    for (Element link: links) {
-                      url = link.attr("href");
-                        txtt = link.text();
-                        System.out.println(txtt + ", " + url);
-                    }
-
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-
-
-                            //  list.addView(element.text().toString());
-                            txt.setText(url);
+                   getActivity().runOnUiThread(new Runnable() {
+                       @Override
+                       public void run() {
+                            txt.setText("denemeee");
 
                         }
-                    });
-                }
-                catch (IOException e) {
+                   });
+         } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
+           }
 
-        });
-        t.start();
-
-
-
-        return v;
+           });
+            t.start();
+            return v;
     }
+
+
 }
 
 

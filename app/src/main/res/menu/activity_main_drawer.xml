@@ -20,7 +20,7 @@
             android:icon="@drawable/ic_home_food"
             android:title="Food List" />
     </group>
-
+<!--
     <item android:title="Communicate">
         <menu>
             <item
@@ -33,5 +33,6 @@
                 android:title="Send" />
         </menu>
     </item>
+-->
 
 </menu>

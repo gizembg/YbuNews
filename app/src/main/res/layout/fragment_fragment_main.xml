@@ -2,16 +2,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:gravity="center"
-
     tools:context="com.example.gizem.ybunews.FragmentMain">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="30dp"
-        android:id="@+id/contentmain"
-        android:text="@string/hello_blank_fragment" />
+    <!--
+        <WebView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/mainweb">
+        </WebView>-->
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="YILDIRIM BEYAZIT UNIVERSITY"
+            android:textSize="40dp"
+            android:id="@+id/textMain"
+            android:layout_margin="20dp"
+            android:textAlignment="center"/>
+    <!--
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView"
+                android:adjustViewBounds="true"
+                android:maxWidth="200dp"
+                android:maxHeight="200dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ybu"/>-->
+            <!-- <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:textSize="30dp"
+                 android:text="Welcome 2 Fragment 1" />-->
+
+ </LinearLayout>

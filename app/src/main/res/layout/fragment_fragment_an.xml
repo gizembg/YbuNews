@@ -1,14 +1,91 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.gizem.ybunews.FragmentAn">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
-        android:id="@+id/textAn"/>
+        android:orientation="vertical"
+        android:layout_margin="5dp">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="YBU ANNOUNCEMENTS"
+            android:textSize="30dp"
+            android:id="@+id/textAn"
+            android:layout_margin="20dp"/>
+
+
+        <Button
+            android:id="@+id/btn_an1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_main"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="View"
+            android:onClick="clicked"
+            >
+        </Button>
+        <Button
+            android:id="@+id/btn_an2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_main"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp"
+
+            android:text="View" >
+        </Button>
+        <Button
+            android:id="@+id/btn_an3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_main"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp"
+
+            android:text="View" >
+        </Button>
+        <Button
+            android:id="@+id/btn_an4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_main"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp"
+
+            android:text="View" >
+        </Button>
+        <Button
+            android:id="@+id/btn_an5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_main"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp"
+
+            android:text="View" >
+        </Button>
+        <Button
+            android:id="@+id/btn_an6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_main"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp"
+
+            android:text="View" >
+        </Button>
+        <WebView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/mainweb">
+        </WebView>
+    </LinearLayout>
+
+
+</ScrollView>
