@@ -77,7 +77,9 @@ public class FragmentNews extends Fragment {
         myWebView= (WebView)v.findViewById(R.id.newsweb);
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-
+        webSettings.setLoadWithOverviewMode(true);   //to make webview size fit the layout
+        webSettings.setUseWideViewPort(true);
+        myWebView.getSettings().setMinimumFontSize(40);    //increase the font because default is small
 
         Thread t = new Thread(new Runnable() {
 

@@ -51,6 +51,11 @@ public class FragmentAn extends Fragment {
         return fragment;
     }
 
+
+
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +67,9 @@ public class FragmentAn extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // Inflate the layout for this fragment
+
+
+            // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_fragment_an, container, false);
         Toast.makeText(getActivity(),"Loading...", Toast.LENGTH_SHORT).show();
 
@@ -70,7 +77,9 @@ public class FragmentAn extends Fragment {
         myWebView= (WebView)v.findViewById(R.id.mainweb);
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-
+        webSettings.setLoadWithOverviewMode(true);         //to make webview size fit the layout
+        webSettings.setUseWideViewPort(true);
+        myWebView.getSettings().setMinimumFontSize(40);      //increase the font because default is small
         txt =(TextView) v.findViewById(R.id.textAn);
 
         btn1 = (Button)v.findViewById((R.id.btn_an1));
