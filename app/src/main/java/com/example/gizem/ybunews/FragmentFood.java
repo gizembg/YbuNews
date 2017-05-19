@@ -12,11 +12,9 @@ import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-
 
 public class FragmentFood extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -73,30 +71,26 @@ public class FragmentFood extends Fragment {
         mWebView = (WebView) v.findViewById(R.id.foodweb);
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        mWebView.loadUrl("http://docs.google.com/gview?embedded=true&url=<http%3A%2F%2Fybu.edu.tr%2Fsks%2Fcontents%2Ffiles%2FMAYIS%2520MEN%25C3%259C%2520YEN%25C4%25B0%2520%281%29.pdf>");
 
-        Toast.makeText(getActivity(), "Fragment food", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Loading...", Toast.LENGTH_SHORT).show();
         txt = (TextView) v.findViewById(R.id.textFood);
-
 
         Thread t = new Thread(new Runnable() {
             Document doc;
-            Element element;
-            Elements links;
-            String txtt;
-            String url;
-
+            Elements element;
+            String urlMenu;
             @Override
             public void run() {
                 try {
-                    doc = Jsoup.connect("http://ybu.edu.tr/muhendislik/bilgisayar/").get();
-              //      element = doc.select("span.alternative_list").first();
+                    doc = Jsoup.connect("http://ybu.edu.tr/sks/").get();
+                    element = doc.select("a[id=wucUstMenu1_rpData_rpData_2_hplink_6]" );
+                    urlMenu =("http://ybu.edu.tr") +element.attr("href");
 
-                   getActivity().runOnUiThread(new Runnable() {
+                    getActivity().runOnUiThread(new Runnable() {
                        @Override
                        public void run() {
-                            txt.setText("denemeee");
-
+                           mWebView.loadUrl(
+                                             "http://docs.google.com/gview?embedded=true&url=" + urlMenu);
                         }
                    });
          } catch (IOException e) {
@@ -108,8 +102,6 @@ public class FragmentFood extends Fragment {
             t.start();
             return v;
     }
-
-
 }
 
 

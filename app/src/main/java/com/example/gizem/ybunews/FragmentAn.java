@@ -27,10 +27,8 @@ public class FragmentAn extends Fragment {
 
     private TextView txt;
     private Button btn1,btn2,btn3,btn4,btn5,btn6;
-
     public WebView myWebView;
 
-    public  String[] loadnew;
     public FragmentAn() {
         // Required empty public constructor
     }
@@ -60,18 +58,13 @@ public class FragmentAn extends Fragment {
 
         }
     }
-
-
-
-
-
-    @Override
+        @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_fragment_an, container, false);
-        Toast.makeText(getActivity(),"Fragment An", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(),"Loading...", Toast.LENGTH_SHORT).show();
 
 
         myWebView= (WebView)v.findViewById(R.id.mainweb);
@@ -87,7 +80,6 @@ public class FragmentAn extends Fragment {
         btn5 = (Button)v.findViewById((R.id.btn_an5));
         btn6 = (Button)v.findViewById((R.id.btn_an6));
 
-        loadnew = new String[6];
 
         Thread t = new Thread(new Runnable() {
 
@@ -96,7 +88,6 @@ public class FragmentAn extends Fragment {
             Elements element;
             Elements[] elements = new Elements[6];
             String[] title = new  String[6];
-            String[] urls = new String[6];
 
             @Override
             public void run() {

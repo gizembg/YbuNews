@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,8 +24,9 @@ public class FragmentNews extends Fragment {
 //    private static final String ARG_PARAM2 = "param2";
 
     //private ListView list;private
-TextView txt;
-private Button btn1,btn2,btn3;
+    TextView txt;
+    private Button btn1,btn2,btn3;
+    public WebView myWebView;
 
 
     // TODO: Rename and change types of parameters
@@ -59,7 +62,7 @@ private Button btn1,btn2,btn3;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_fragment_news, container, false);
-        Toast.makeText(getActivity(),"Fragment news", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(),"Loading...", Toast.LENGTH_SHORT).show();
         txt =(TextView) v.findViewById(R.id.contentnews);
         //list =(ListView) v.findViewById(R.id.contentnews);
 
@@ -69,7 +72,16 @@ private Button btn1,btn2,btn3;
         btn2 = (Button)v.findViewById((R.id.btn_news2));
         btn3 = (Button)v.findViewById((R.id.btn_news3));
 
+
+
+        myWebView= (WebView)v.findViewById(R.id.newsweb);
+        WebSettings webSettings = myWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+
+
         Thread t = new Thread(new Runnable() {
+
+            String[] loadurls = new String[3];
             Document doc;
             Elements[] elements = new Elements[3];
             String[] title = new  String[3];
@@ -88,6 +100,12 @@ private Button btn1,btn2,btn3;
                     elements[2] = doc.select("a[id=ContentPlaceHolder1_ctl01_rpData_hplink_2]");
                     title[2] = elements[2].attr("title");
 
+                    for(int k = 0; k<=2; k++)
+                    {
+                        loadurls[k] = ("http://www.ybu.edu.tr/muhendislik/bilgisayar/")+ elements[k].attr("href");
+                    }
+
+
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -101,6 +119,49 @@ private Button btn1,btn2,btn3;
                 catch (IOException e) {
                     e.printStackTrace();
                 }
+
+
+
+                btn1.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        myWebView.loadUrl(loadurls[0]);
+
+                        // Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(loadurls[0]));
+                        // startActivity(browserIntent);
+
+                    }
+                });
+
+
+                btn2.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        myWebView.loadUrl(loadurls[1]);
+                        // Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(loadurls[1]));
+                        // startActivity(browserIntent);
+                    }
+                });
+
+
+
+                btn3.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        myWebView.loadUrl(loadurls[2]);
+                        //Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(loadurls[2]));
+                        //startActivity(browserIntent);
+                    }
+                });
+
+
+
             }
         });
         t.start();
